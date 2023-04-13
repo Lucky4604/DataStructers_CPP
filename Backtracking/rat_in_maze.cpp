@@ -6,7 +6,7 @@ bool isSafe(int x, int y, int row, int col, int arr[3][3], vector<vector<bool>> 
         return true;
     } else {
         return false;
-    }
+    }   
 }
 
 void solve(int arr[3][3], int row, int col, int i, int j, vector<vector<bool>> &vis, vector<string> &path, string output){
