@@ -1,18 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//  vector<int> twoSum(vector<int>& nums, int target) {
-//         vector<int> ans;
-//         for(int i=0;i<nums.size();i++){
-//             for(int j=i+1;j<nums.size();j++){
-//                 if(nums[i]+nums[j]==target){
-//                     ans.push_back(i);
-//                     ans.push_back(j);
-//                 }
-//             }
-//         }
-//         return ans;
-//     }
+ vector<int> twoSum(vector<int>& nums, int target) {
+    //brute force approach=>
+        vector<int> ans;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                if(nums[i]+nums[j]==target){
+                    ans.push_back(i);
+                    ans.push_back(j);
+                }
+            }
+        }
+        return ans;
+    }
 
 
 //effecient approach=>
@@ -26,7 +27,7 @@ vector<int> twoSum(vector<int> nums,int target){
         if(m.find(require)!=m.end()){
             //if element is present in map then we have found the pair
             ans.push_back(i);
-
+            // Add the index of the required number (which is already in the map) to the 'ans' vector.
             ans.push_back(m[require]);
             return ans;
         }
