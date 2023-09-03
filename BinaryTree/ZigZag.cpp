@@ -14,34 +14,38 @@ struct Node {
     }
 };
 
-vector<int> LevelOrder(Node *root) {
-    vector<int> ans;
+vector<vector<int>> LevelOrder(Node *root) {
+    vector<vector<int>> ans;
     if (root == NULL)
         return ans;
+
+    bool leftToRight = true;
 
     queue<Node*> q;
     q.push(root);
 
     while (!q.empty()) {
         int size = q.size();
-        vector<int> level;
-        
+        vector<int> level(size);
+
         for (int i = 0; i < size; i++) {
             Node *front = q.front();
             q.pop();
-            
-            level.push_back(front->data);
-            
+
+            int idx = leftToRight ? i : size - i - 1;
+            level[idx] = front->data;
+
             if (front->left != NULL)
                 q.push(front->left);
-            
+
             if (front->right != NULL)
                 q.push(front->right);
         }
-        
-       ans.push_back(level);
+
+        ans.push_back(level);
+        leftToRight = !leftToRight; // Toggle the direction for the next level
     }
-    
+
     return ans;
 }
 
@@ -57,13 +61,15 @@ int main() {
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(10);
 
-    vector<int> ans = LevelOrder(root);
+    vector<vector<int>> ans = LevelOrder(root);
 
-    cout << "Level order traversal is: ";
+    cout << "Zigzag level order traversal is: " << endl;
     for (int i = 0; i < ans.size(); i++) {
-        cout << ans[i] << " ";
+        for (int j = 0; j < ans[i].size(); j++) {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
     }
-    cout << endl;
 
     return 0;
 }

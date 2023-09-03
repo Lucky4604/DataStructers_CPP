@@ -1,25 +1,28 @@
-#include <iostream>
-#include <vector>
+#include<bits/stdc++.h>
 using namespace std;
 
-struct Node {
+//class of Node
+struct Node{
     int data;
-    struct Node *left;
-    struct Node *right;
+    struct Node* right;
+    struct Node* left;
 
-    Node(int val) {
-        data = val;
-        left = right = NULL;
+    //constructor
+    Node(int val){
+        data=val;
+        left=right=NULL;
+
     }
 };
 
-void PreOrder(Node *root, vector<int> &ans) {
-    if (root == NULL) {
-        return;
-    }
+void preorder(Node *root,vector<int>&ans){
+    //base case
+    if(root==NULL)return ;
+
     ans.push_back(root->data);
-    PreOrder(root->left, ans);
-    PreOrder(root->right, ans);
+    preorder(root->left,ans);
+    preorder(root->right,ans);
+
 }
 
 int main() {
@@ -34,15 +37,15 @@ int main() {
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(10);
 
-    vector<int> ans;
-    PreOrder(root, ans);
+    vector<int>ans;
+    preorder(root,ans);
 
-    // Printing the preorder traversal
-    cout << "Preorder traversal is: ";
-    for (int i = 0; i < ans.size(); i++) {
-        cout << ans[i] << " ";
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<" ";
     }
-    cout << endl;
+    cout<<endl;
+
+    
 
     return 0;
 }
